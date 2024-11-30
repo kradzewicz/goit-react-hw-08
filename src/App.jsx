@@ -1,19 +1,30 @@
 /** @format */
 
-import { useState } from "react";
-
 import "./App.css";
+import { ContactFrom } from "./components/ContactForm/ContactForm";
+import { SearchBox } from "./components/SearchBox";
+import { ContactList } from "./components/ContactList";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchContacts } from "./redux/operations";
+import { selectError, selectIsLoading } from "./redux/selectors";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>
-      <h1>Vite + React</h1>
-
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </button>
+      <h1>Phone Book</h1>
+      <ContactFrom />
+      <SearchBox />
+      {isLoading && !error && <b>Request in progress...</b>}
+      <ContactList />
     </>
   );
 }
