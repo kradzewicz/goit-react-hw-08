@@ -1,7 +1,7 @@
 /** @format */
 
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../redux/operations";
+import { deleteContact } from "../../redux/operations";
 
 export function ContactCard({ name, number, id }) {
   const dispatch = useDispatch();

@@ -2,10 +2,10 @@
 
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/operations";
 import { nanoid } from "@reduxjs/toolkit";
 import * as Yup from "yup";
-import { selectContacts } from "../../redux/selectors";
+import { selectContacts } from "../../../redux/selectors";
+import { addContact } from "../../../redux/operations";
 
 const initialValues = {
   name: "",
